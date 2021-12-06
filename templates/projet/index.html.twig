@@ -3,8 +3,15 @@
 {% block title %}accueil{% endblock %}
 
 {% block body %}
-    <header>
-        <h1>KHADIJA BAHI</h1>
+    <header class="container-fluid ">
+        <div class="card bg-dark text-white">
+            <img src="{{ asset('img/ordi2.jpg') }}" class=" w-auto card-img" alt="ordi">
+            <div class="card-img-overlay text-center">
+              <h5 class="card-title">KHADIJA BAHI</h5>
+              <p class="card-text text-center">BIENVENUE SUR MON PORTFOLIO !</p>
+              <p class="card-text">Je me présente</p>
+            </div>
+          </div>
     
     </header>
 
@@ -16,15 +23,32 @@
             </div>
         </div>
 
-        <div class="row"
-              
-         </div>
-
         <div class="row">
-            <div class="col-12 text-center pt-5">
-                <a href="#" class="btn btn-secondary">Voir tout</a>
-            </div>
+            
+                {% for projet %}
+                        <div class="col-4 p-3">
+                            <div class="card">
+                                <img src="{{ asset('img/projet.png') }}" class="card-img-top" alt="photo principale de {{ projet.nom }}">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ projet.nom }}</h5>
+                                    <p class="card-text">{{ projet.methode }}</p>
+                                    <p class="card-text">{{ projet.description|u.truncate(90, '...', false) }}</p>
+                                </div>
+
+                                <div class="card-body text-center">
+                                    <a href="{{ path('projet', {'id': projet.lien}) }}" class="btn btn-secondary">Siteweb</a>
+                                </div>
+                            </div>
+                        </div>
+                {% endfor %}
+            
+    
+
         </div>
+              
+        
+
+       
 
     </main>
 
